@@ -1,25 +1,28 @@
-
+var image;
 window.onload=function(){
 
 
 
 //used to switch through the four images.
 function choosePic(){
-  switch(expression) {
-    case n:
-        style.backgroundImage="";
+  var bckimg=document.getElementById('puzzlearea').getElementsByTagName('bckimg');
+  var image=prompt("Choose an image. Enter 1-Tsuna,2-Arcobaleno,3-Tsuna sitting,4-Angel.");
+
+  switch(for(var k=0; k<bckimg.length; k++)) {
+    case 1:
+        style.backgroundImage="background.jpg";
         break;
-    case n:
-        style.backgroundImage="";
+    case 2:
+        style.backgroundImage="background2.jpg";
         break;
-    case n:
-        style.backgroundImage="";
+    case 3:
+        style.backgroundImage="background3.jpg";
         break;
-    case n:
-        style.backgroundImage="";
+    case 4:
+        style.backgroundImage="background4.jpg";
         break;
     default:
-        style.backgroundImage="";
+        style.backgroundImage="background.jpg";
         break;
 }
 }
