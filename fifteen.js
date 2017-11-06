@@ -1,4 +1,5 @@
 var move;
+var image;
 var slot=15;
 var start=false;
 window.onload=function(){
