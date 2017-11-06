@@ -1,4 +1,6 @@
-var image;
+var move;
+var slot=15;
+var start=false;
 window.onload=function(){
 
 
@@ -35,8 +37,83 @@ $(document).ready(function(){
 
 var shuffleb=document.getElementById("shufflebutton");
 shuffleb.addEventListener("click", shuffle);
-for(var k-0; k< puzlPiece.length; k++){
 
+//shuffle pieces
+function shuffle() {
+  var num=100;
+      for(var k =0; k<num; k++){
+          var lst = [];
+          for(var i =0; i<puzlPiece.length; i++){
+              if(canMove(puzlPiece[i])!="none"){
+                  lst.push(i);
+              }
+
+          }
+
+          if(lst.length!=0){
+              var n = lst[Math.floor((Math.random()*lst.length)+0)];
+              canMove(puzlPiece[n]);
+              moveTile(puzlPiece[n]);
+          }
+      }
+      move="none";
+
+}
+
+//tell if piece can move
+function canMove(){
+  if(!start){
+
+        if((parseInt(this.style.left)+parseInt(this.offsetWidth)) === parseInt(getX()) && this.style.top===getY()){
+        this.className = this.className + " movable";
+        move="right";
+        }else if(parseInt(this.style.left) === (parseInt(getX())+parseInt(this.offsetWidth)) && this.style.top===getY()){
+            this.className = this.className + " movable";
+            move= "left";
+        }else if((parseInt(this.style.top)+parseInt(this.offsetHeight)) === parseInt(getY()) && this.style.left===getX()){
+            this.className = this.className + " movable";
+            move= "down";
+        }else if(parseInt(this.style.top) === (parseInt(getY())+parseInt(this.offsetHeight)) && this.style.left===getX()){
+            this.className = this.className + " movable";
+            move= "up";
+        }else{
+            move= "none";
+        }
+  }
+
+
+}
+
+function getX(){
+        if(slot>=0 && slot<=3){
+            return slot*100+'px';
+        }else if(slot>=4 && slot<=7){
+            return (slot-4)*100+'px';
+
+        }else if(slot>=8 && slot<=11){
+            return (slot-8)*100+'px';
+
+        }else{
+            return (slot-12)*100+'px';
+
+        }
+
+}
+
+
+function getY(){
+    if(slot>=0 && slot<=3){
+            return '0px';
+        }else if(slot>=4 && slot<=7){
+            return '100px';
+
+        }else if(slot>=8 && slot<=11){
+            return '200px';
+
+        }else{
+            return '300px';
+
+        }
 }
 
 //moves piece on board
@@ -63,13 +140,13 @@ function moveTile(piece){
 
 
     }
-
+/*
 //used to switch through the four images.
 
 function choosePic(){
 var puzlPiece=document.getElementById('puzzlearea').getElementsByTagName('puzlPiece');
-
-  switch(prompt("Choose an image. Enter 1-Tsuna,2-Arcobaleno,3-Tsuna sitting,4-Angel.") {
+var response=prompt("Choose an image. Enter 1-Tsuna,2-Arcobaleno,3-Tsuna sitting,4-Angel.");
+  switch(puzlPiece) {
     case "1":
         puzlPiece[k].style.backgroundImage="background.jpg";
         break;
@@ -86,5 +163,5 @@ var puzlPiece=document.getElementById('puzzlearea').getElementsByTagName('puzlPi
         puzlPiece[k].style.backgroundImage="background1.jpg";
         break;
 }
-}
+}*/
 }
